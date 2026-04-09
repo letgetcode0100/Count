@@ -1,7 +1,7 @@
 // ---------------------------------------------------------
 // CONFIGURATION: Set your birthday here!
 // Format: "Month Day, Year HH:MM:SS" (e.g., "Dec 31, 2026 23:59:59")
-const BIRTHDAY_DATE = "April 10, 2026  12:00:00";
+const BIRTHDAY_DATE = "April 10, 2026 00:00:00";
 const CELEBRANT_NAME = "Paro";
 // ---------------------------------------------------------
 
@@ -17,10 +17,13 @@ const birthdaySong = document.getElementById('birthdaySong');
 const targetDate = new Date(BIRTHDAY_DATE);
 document.getElementById('celebrantBadge').innerText = `Happy Birthday ${CELEBRANT_NAME}!`;
 
-targetDateText.innerText = `Target Date: ${targetDate.toLocaleDateString('en-US', {
+targetDateText.innerText = `Target Date: ${targetDate.toLocaleString('en-US', {
     month: 'long',
     day: 'numeric',
-    year: 'numeric'
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true
 })}`;
 
 function updateCountdown() {
