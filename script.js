@@ -1,7 +1,7 @@
 // ---------------------------------------------------------
 // CONFIGURATION: Set your birthday here!
 // Format: "Month Day, Year HH:MM:SS" (e.g., "Dec 31, 2026 23:59:59")
-const BIRTHDAY_DATE = "April 10, 2026 00:00:00";
+const BIRTHDAY_DATE = "April 10, 2027 00:00:00";
 const CELEBRANT_NAME = "Paro";
 // ---------------------------------------------------------
 
