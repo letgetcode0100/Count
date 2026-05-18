@@ -17,7 +17,26 @@
 <body>
     <div id="particles-js"></div>
     <main class="container">
-        <div class="countdown-card" id="countdownCard">
+        <section class="welcome-screen" id="loginScreen">
+            <div class="welcome-card">
+                <span class="badge">Welcome</span>
+                <h1>Unlock Your Birthday Surprise</h1>
+                <p class="welcome-copy">Enter your date of birth in the password field to continue. Click the field to open the calendar.</p>
+
+                <form id="loginForm" class="login-form">
+                    <label for="dobInput">Enter your date of birth</label>
+                    <div class="input-group">
+                        <span class="input-prefix">📅</span>
+                        <input id="dobInput" type="date" name="dob" autocomplete="bday" required>
+                    </div>
+                    <button type="submit">Enter</button>
+                    <p class="hint"></p>
+                    <p class="login-status" id="loginStatus"></p>
+                </form>
+            </div>
+        </section>
+
+        <section class="countdown-card hidden" id="countdownCard">
             <header class="card-header">
                 <span class="badge" id="celebrantBadge">Happy Birthday!</span>
                 <h1 id="celebrantNameText">Birthday Countdown</h1>
@@ -50,12 +69,12 @@
             <footer class="creator-footer">
                 Designed & Developed by <span class="creator-name">Ishant Raj</span>
             </footer>
-        </div>
+        </section>
     </main>
 
     <audio id="birthdaySong" preload="auto">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        <!-- You can replace the src with your own 'birthday-song.mp3' file -->
+        <source src="Annu.mp3" type="audio/mpeg">
+        <!-- Using the local Annu.mp3 song provided by the user -->
     </audio>
 
     <canvas id="confetti-canvas"></canvas>

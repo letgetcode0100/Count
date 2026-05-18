@@ -1,8 +1,9 @@
 // ---------------------------------------------------------
 // CONFIGURATION: Set your birthday here!
 // Format: "Month Day, Year HH:MM:SS" (e.g., "Dec 31, 2026 23:59:59")
-const BIRTHDAY_DATE = "April 10, 2027 00:00:00";
-const CELEBRANT_NAME = "Paro";
+const BIRTHDAY_DATE = "May 25, 2026 00:00:00";
+const CELEBRANT_NAME = "Dear Anushka,Pochaa,Babu,Shona & Annu";
+const VALID_DOB = "2006-05-25"; // correct date format for the calendar input
 // ---------------------------------------------------------
 
 const daysEl = document.getElementById('days');
@@ -12,10 +13,14 @@ const secondsEl = document.getElementById('seconds');
 const targetDateText = document.getElementById('targetDateText');
 const messageEl = document.getElementById('message');
 const birthdaySong = document.getElementById('birthdaySong');
+const loginScreen = document.getElementById('loginScreen');
+const countdownCard = document.getElementById('countdownCard');
+const loginForm = document.getElementById('loginForm');
+const dobInput = document.getElementById('dobInput');
+const loginStatus = document.getElementById('loginStatus');
 
-// Initialize the target date and name display
 const targetDate = new Date(BIRTHDAY_DATE);
-document.getElementById('celebrantBadge').innerText = `Happy Birthday ${CELEBRANT_NAME}!`;
+document.getElementById('celebrantBadge').innerText = `Happy Birthday to you ${CELEBRANT_NAME}!`;
 
 targetDateText.innerText = `Target Date: ${targetDate.toLocaleString('en-US', {
     month: 'long',
@@ -31,7 +36,6 @@ function updateCountdown() {
     const diff = targetDate - currentTime;
 
     if (diff <= 0) {
-        // Birthday has arrived!
         clearInterval(timerInterval);
         daysEl.innerText = "00";
         hoursEl.innerText = "00";
@@ -55,7 +59,6 @@ function updateCountdown() {
     secondsEl.innerText = s < 10 ? '0' + s : s;
 }
 
-// Celebration Confetti
 function triggerCelebration() {
     const duration = 15 * 1000;
     const animationEnd = Date.now() + duration;
@@ -65,15 +68,13 @@ function triggerCelebration() {
         return Math.random() * (max - min) + min;
     }
 
-    const interval = setInterval(function () {
+    const interval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
-
         if (timeLeft <= 0) {
             return clearInterval(interval);
         }
 
         const particleCount = 50 * (timeLeft / duration);
-        // since particles fall down, start a bit higher than random
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
         confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
     }, 250);
@@ -87,11 +88,44 @@ function playSong() {
     }
 }
 
-// Update every second
+function showHomePage() {
+    loginScreen.classList.add('hidden');
+    countdownCard.classList.remove('hidden');
+    messageEl.innerText = "Welcome back! The countdown begins now. 🎶";
+    window.location.hash = 'home';
+    updateCountdown();
+    playSong();
+}
+
+function handleLogin(event) {
+    event.preventDefault();
+    const dobValue = dobInput.value;
+
+    if (!dobValue) {
+        loginStatus.textContent = 'Please select your date of birth from the calendar.';
+        return;
+    }
+
+    if (dobValue === VALID_DOB) {
+        loginStatus.textContent = '';
+        showHomePage();
+    } else {
+        loginStatus.textContent = 'Password incorrect try again.';
+        loginStatus.style.color = '#fecaca';
+    }
+}
+
+loginForm.addEventListener('submit', handleLogin);
+
+dobInput.addEventListener('focus', () => {
+    if (typeof dobInput.showPicker === 'function') {
+        dobInput.showPicker();
+    }
+});
+
 const timerInterval = setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// Initial subtle confetti burst
 window.addEventListener('load', () => {
     confetti({
         particleCount: 100,
