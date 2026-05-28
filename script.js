@@ -1,7 +1,7 @@
 // ---------------------------------------------------------
 // CONFIGURATION: Set your birthday here!
 // Format: "Month Day, Year HH:MM:SS" (e.g., "Dec 31, 2026 23:59:59")
-const BIRTHDAY_DATE = "May 25, 2026 00:00:00";
+const BIRTHDAY_DATE = "May 25, 2027 00:00:00";
 const CELEBRANT_NAME = "Dear Anushka,Pochaa,Babu,Shona & Annu";
 const VALID_DOB = "2006-05-25"; // correct date format for the calendar input
 // ---------------------------------------------------------
